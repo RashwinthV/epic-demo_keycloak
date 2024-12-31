@@ -2,6 +2,7 @@ import React from "react";
 import Body from "./components/Body";
 import Header from "./components/Header";
 import UseAuth from "./Hooks/UseAuth";
+import Unauthorized from "./components/Unauthorized";
 
 function App() {
     const { isLogin, keycloak } = UseAuth();
@@ -13,8 +14,7 @@ function App() {
         </div>
     ) : (
         <div>
-           nauthorized Login
-        </div>
+<Unauthorized/>        </div>
     );
 }
 
