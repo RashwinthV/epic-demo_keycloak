@@ -6,16 +6,12 @@ const cors = require("cors");
 const app = express();
 const PORT = 3000;
 
-// Enable CORS for all requests
 app.use(cors());
 
-// Keycloak configuration
 const keycloakUrl = "http://localhost:8080/realms/Epic";
 const publicKeyUrl = `${keycloakUrl}/protocol/openid-connect/certs`;
 
-let publicKeys = []; // Store public keys indexed by kid
-
-// Fetch the public keys
+let publicKeys = []; 
 const fetchPublicKeys = async () => {
     try {
         const response = await axios.get(publicKeyUrl);
@@ -26,7 +22,6 @@ const fetchPublicKeys = async () => {
     }
 };
 
-// Find public key by kid
 const getPublicKey = (kid) => {
     const key = publicKeys.find(k => k.kid === kid);
     if (!key || !key.x5c || !key.x5c[0]) {
@@ -36,7 +31,6 @@ const getPublicKey = (kid) => {
     return `-----BEGIN CERTIFICATE-----\n${key.x5c[0]}\n-----END CERTIFICATE-----`;
 };
 
-// Middleware to verify token
 const verifyToken = async (token) => {
     const decodedToken = jwt.decode(token, { complete: true });
     const kid = decodedToken.header.kid;
@@ -55,7 +49,6 @@ const verifyToken = async (token) => {
     }
 };
 
-// Endpoint to validate the token
 app.post("/api/authorize", express.json(), async (req, res) => {
     const token = req.body.token;
     if (!token) {
