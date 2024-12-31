@@ -1,0 +1,45 @@
+/* Body.css */
+
+.body-container {
+    margin-top: 70px; /* Space for the fixed header */
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #dbddde;
+    border-radius: 8px;
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #495057;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .section {
+        margin-bottom: 30px;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+::-webkit-scrollbar{
+    display: none;
+}
